@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSMutableArray *layer_shapes;
 @property (nonatomic, strong) NSMutableArray *shape_points_container;
+@property (nonatomic, strong) RMCircleAnnotation *firstTouch;
 @property (nonatomic, strong) RMShape *line;
 
 @end
@@ -49,10 +50,10 @@
     if (annotation.isUserLocationAnnotation)
         return nil;
     
+    
     self.line = [[RMShape alloc] initWithView:mapView];
     self.line.lineWidth = 3.0;
     self.line.lineColor = [UIColor blueColor];
-    
     return self.line;
     
 }
@@ -71,10 +72,21 @@
      
      }
      */
+    if(self.shape_points_container.count == 1)
+    {
+        self.firstTouch =  [[RMCircleAnnotation alloc] initWithMapView:map centerCoordinate:coord2.getPoint radiusInMeters:3];
+        /*
+         self.firstAnno = [[RMAnnotation alloc] initWithMapView:map
+                                                        coordinate:map.centerCoordinate
+                                                          andTitle:nil];
+         */
+        [map addAnnotation:self.firstTouch];
+    }
     if(self.shape_points_container.count > 1 &&
        [((MyPoint*)[self.shape_points_container objectAtIndex:0]) isEqual:coord2])
     {
         NSLog(@"Back to first!");
+        [map removeAnnotation:self.firstTouch];
         [self.line addLineToCoordinate:((MyPoint*)[self.shape_points_container objectAtIndex:0]).getPoint];
         [self.layer_shapes addObject:self.shape_points_container];
         
