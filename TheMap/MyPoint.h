@@ -16,6 +16,7 @@
     CLLocationCoordinate2D myPoint;
 }
 
+- (CLLocationCoordinate2D) getPoint;
 - (id) init;
 - (id) Init:(CLLocationCoordinate2D) point;
 - (BOOL)isEqual:(id)anObject;

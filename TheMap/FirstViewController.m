@@ -32,7 +32,7 @@
     
     
     // delegate questions
-    mapView.delegate = self;
+    mapView.delegate = (id)self;
     [self.view addSubview:mapView];
     
     [mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) animated:NO];
@@ -41,13 +41,6 @@
                                                           coordinate:mapView.centerCoordinate
                                                             andTitle:nil];
     [mapView addAnnotation:annotation];
-   
-    /*
-    RMAnnotation *blueLine = [[RMAnnotation alloc] initWithMapView:mapView
-                                                    coordinate:mapView.centerCoordinate
-                                                      andTitle:nil];
-    
-    [mapView addAnnotation:blueLine];*/
     
 }
 
@@ -57,8 +50,8 @@
         return nil;
     
     self.line = [[RMShape alloc] initWithView:mapView];
-    self.line.lineWidth = 1.0;
-    self.line.lineColor = [UIColor greenColor];
+    self.line.lineWidth = 3.0;
+    self.line.lineColor = [UIColor blueColor];
     
     return self.line;
     
@@ -71,25 +64,18 @@
     MyPoint *coord2 = [[MyPoint alloc] Init:coord];
     [self.shape_points_container addObject: coord2];
     
-    //coord.latitude = [map pixelToCoordinate:point].latitude;
-    //coord.longitude = [map pixelToCoordinate:point].longitude;
     /*
-    NSLog(@"Coordinate from pixel: %f, %f", [map pixelToCoordinate:point].latitude, [map pixelToCoordinate:point].longitude);
-    NSLog(@"CGPoint coordinate: %f %f", coord.latitude, coord.longitude);
+     if(self.shape_points_container.count == 1)
+     {
+     self.firstTouch = [[RMCircle alloc] initWithView:map radiusInMeters:.3];
+     
+     }
      */
-    
-
-    /*
-     if(self.shape_points_container.count > 1 && [coord2 isEqual:[self.shape_points_container objectAtIndex:0]] )
-            NSLog(@"It works! -- equal point found.");
-     */
-    
-    
     if(self.shape_points_container.count > 1 &&
        [((MyPoint*)[self.shape_points_container objectAtIndex:0]) isEqual:coord2])
     {
         NSLog(@"Back to first!");
-        [self.line addLineToCoordinate:coord];
+        [self.line addLineToCoordinate:((MyPoint*)[self.shape_points_container objectAtIndex:0]).getPoint];
         [self.layer_shapes addObject:self.shape_points_container];
         
         self.shape_points_container = [[NSMutableArray alloc] init];
@@ -102,7 +88,6 @@
     }
     else
         [self.line addLineToCoordinate:coord];
-    //    [self.blueLine addLineToCoordinate:coord2];
 }
 
 

@@ -11,17 +11,25 @@
 #import <Mapbox/Mapbox.h>
 
 @implementation MyPoint
+
 - (id) init
 {
     self = [super init];
     myPoint = CLLocationCoordinate2DMake(0, 0);;
     return self;
 }
+
 - (id) Init:(CLLocationCoordinate2D) point{
     myPoint.latitude = point.latitude;
     myPoint.longitude = point.longitude;
     return self;
 }
+
+- (CLLocationCoordinate2D) getPoint
+{
+    return myPoint;
+}
+
 - (BOOL)isEqual:(id)anObject
 {
     double delta = 0.00005;
