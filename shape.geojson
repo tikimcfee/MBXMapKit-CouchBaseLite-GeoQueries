@@ -3,7 +3,9 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+               "name": "pool"
+        },
       "geometry": {
         "type": "LineString",
         "coordinates": [
