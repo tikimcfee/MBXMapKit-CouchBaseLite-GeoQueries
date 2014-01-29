@@ -134,6 +134,19 @@
 			name = OldHANDM;
 			sourceTree = "<group>";
 		};
+		45416882189879CA00FC746E /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				45AEE2371886096E00215B75 /* FirstViewController.h */,
+				45BE5C6C1897197100D74A4F /* MBXMapKit.h */,
+				4541688018973DE000FC746E /* MyPoint.h */,
+				4513C56D1890877A00B6E06E /* PlaceObject.h */,
+				45AEE22E1886096E00215B75 /* AppDelegate.h */,
+				45AEE23A1886096E00215B75 /* SecondViewController.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
 		45AEE2131886096D00215B75 = {
 			isa = PBXGroup;
 			children = (
@@ -177,23 +190,18 @@
 			isa = PBXGroup;
 			children = (
 				4541687E18973A8D00FC746E /* OldHANDM */,
-				45AEE2371886096E00215B75 /* FirstViewController.h */,
-				45AEE2381886096E00215B75 /* FirstViewController.m */,
-				45BE5C6C1897197100D74A4F /* MBXMapKit.h */,
+				45416882189879CA00FC746E /* Headers */,
 				45BE5C6D1897197100D74A4F /* MBXMapKit.m */,
+				45AEE2381886096E00215B75 /* FirstViewController.m */,
+				45AEE23B1886096E00215B75 /* SecondViewController.m */,
 				4541687F18973DB700FC746E /* MyPoint.m */,
-				4541688018973DE000FC746E /* MyPoint.h */,
 				4513C56E189087FF00B6E06E /* PlaceObject.m */,
-				4513C56D1890877A00B6E06E /* PlaceObject.h */,
 				453BA90D188F46D70089441C /* FirstViewController-old */,
 				45AEE23D1886096E00215B75 /* Images.xcassets */,
 				45AEE2261886096E00215B75 /* Supporting Files */,
-				45AEE22E1886096E00215B75 /* AppDelegate.h */,
 				45AEE22F1886096E00215B75 /* AppDelegate.m */,
 				45AEE2311886096E00215B75 /* Main_iPhone.storyboard */,
 				45AEE2341886096E00215B75 /* Main_iPad.storyboard */,
-				45AEE23A1886096E00215B75 /* SecondViewController.h */,
-				45AEE23B1886096E00215B75 /* SecondViewController.m */,
 			);
 			path = TheMap;
 			sourceTree = "<group>";

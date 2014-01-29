@@ -8,7 +8,7 @@
 
 #import "PlaceObject.h"
 #import "FirstViewController.h"
-#import <Mapbox/Mapbox.h>
+#import <MapKit/MapKit.h>
 
 @implementation PlaceObject
 
@@ -33,8 +33,8 @@
     NSInteger i = 0;
     for(MyPoint *point in myPoints)
     {
-        NSLog(@"Got new point, %f -- %f", point.getPoint.latitude, point.getPoint.longitude);
-     toReturn[i++] = point.getPoint;
+        //NSLog(@"Got new point, %f -- %f", point.getPoint.latitude, point.getPoint.longitude);
+        toReturn[i++] = point.getPoint;
     }
     return toReturn;
 }

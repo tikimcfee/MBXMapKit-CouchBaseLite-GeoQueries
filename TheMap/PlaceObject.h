@@ -12,6 +12,8 @@
 #import <MapKit/MapKit.h>
 #import "MyPoint.h"
 
+
+// Trying to make PlaceObject an MKOverlay.. dunno if it will work
 @interface PlaceObject:NSObject
 {
     NSMutableArray *myPoints;
@@ -22,6 +24,7 @@
 - (void) addBoundPointToPlace:(MyPoint*) bound;
 - (NSInteger) getCount;
 - (CLLocationCoordinate2D*) getLocationBounds;
+- (MKPolygon *) getPolygonRepresentation;
 
 
 
