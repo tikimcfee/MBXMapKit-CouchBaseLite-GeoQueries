@@ -12,7 +12,7 @@
 		4541687A18972A7B00FC746E /* buildings.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 4541687918972A7B00FC746E /* buildings.geojson */; };
 		4541687D189734E500FC746E /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541687C189734E500FC746E /* BuildingAnnotation.m */; };
 		454168811897462900FC746E /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541687F18973DB700FC746E /* MyPoint.m */; };
-		455EC6271887537300E79682 /* shape.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 455EC6261887537300E79682 /* shape.geojson */; };
+		455EC6271887537300E79682 /* buildingsNew.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 455EC6261887537300E79682 /* buildingsNew.geojson */; };
 		45AEE2201886096D00215B75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE21F1886096D00215B75 /* Foundation.framework */; };
 		45AEE2221886096D00215B75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2211886096D00215B75 /* CoreGraphics.framework */; };
 		45AEE2241886096E00215B75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2231886096D00215B75 /* UIKit.framework */; };
@@ -60,7 +60,7 @@
 		4541687C189734E500FC746E /* BuildingAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingAnnotation.m; sourceTree = "<group>"; };
 		4541687F18973DB700FC746E /* MyPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		4541688018973DE000FC746E /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
-		455EC6261887537300E79682 /* shape.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shape.geojson; sourceTree = SOURCE_ROOT; };
+		455EC6261887537300E79682 /* buildingsNew.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildingsNew.geojson; sourceTree = SOURCE_ROOT; };
 		45AEE21C1886096D00215B75 /* TheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45AEE21F1886096D00215B75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		45AEE2211886096D00215B75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +128,7 @@
 		4541687E18973A8D00FC746E /* OldHANDM */ = {
 			isa = PBXGroup;
 			children = (
+				453BA90D188F46D70089441C /* FirstViewController-old */,
 				4541687B189734E500FC746E /* BuildingAnnotation.h */,
 				4541687C189734E500FC746E /* BuildingAnnotation.m */,
 			);
@@ -138,11 +139,11 @@
 			isa = PBXGroup;
 			children = (
 				45AEE2371886096E00215B75 /* FirstViewController.h */,
+				45AEE23A1886096E00215B75 /* SecondViewController.h */,
 				45BE5C6C1897197100D74A4F /* MBXMapKit.h */,
 				4541688018973DE000FC746E /* MyPoint.h */,
 				4513C56D1890877A00B6E06E /* PlaceObject.h */,
 				45AEE22E1886096E00215B75 /* AppDelegate.h */,
-				45AEE23A1886096E00215B75 /* SecondViewController.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -151,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				4541687918972A7B00FC746E /* buildings.geojson */,
-				455EC6261887537300E79682 /* shape.geojson */,
+				455EC6261887537300E79682 /* buildingsNew.geojson */,
 				45AEE26518860B6100215B75 /* Mapbox.bundle */,
 				45AEE2251886096E00215B75 /* TheMap */,
 				45AEE24A1886096E00215B75 /* TheMapTests */,
@@ -189,19 +190,18 @@
 		45AEE2251886096E00215B75 /* TheMap */ = {
 			isa = PBXGroup;
 			children = (
-				4541687E18973A8D00FC746E /* OldHANDM */,
 				45416882189879CA00FC746E /* Headers */,
-				45BE5C6D1897197100D74A4F /* MBXMapKit.m */,
 				45AEE2381886096E00215B75 /* FirstViewController.m */,
-				45AEE23B1886096E00215B75 /* SecondViewController.m */,
 				4541687F18973DB700FC746E /* MyPoint.m */,
 				4513C56E189087FF00B6E06E /* PlaceObject.m */,
-				453BA90D188F46D70089441C /* FirstViewController-old */,
+				45BE5C6D1897197100D74A4F /* MBXMapKit.m */,
 				45AEE23D1886096E00215B75 /* Images.xcassets */,
 				45AEE2261886096E00215B75 /* Supporting Files */,
 				45AEE22F1886096E00215B75 /* AppDelegate.m */,
+				45AEE23B1886096E00215B75 /* SecondViewController.m */,
 				45AEE2311886096E00215B75 /* Main_iPhone.storyboard */,
 				45AEE2341886096E00215B75 /* Main_iPad.storyboard */,
+				4541687E18973A8D00FC746E /* OldHANDM */,
 			);
 			path = TheMap;
 			sourceTree = "<group>";
@@ -317,7 +317,7 @@
 				45AEE2331886096E00215B75 /* Main_iPhone.storyboard in Resources */,
 				45AEE22A1886096E00215B75 /* InfoPlist.strings in Resources */,
 				4541687A18972A7B00FC746E /* buildings.geojson in Resources */,
-				455EC6271887537300E79682 /* shape.geojson in Resources */,
+				455EC6271887537300E79682 /* buildingsNew.geojson in Resources */,
 				453BA90E188F46D70089441C /* FirstViewController-old in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

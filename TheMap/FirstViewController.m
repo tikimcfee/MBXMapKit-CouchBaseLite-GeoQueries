@@ -10,7 +10,6 @@
 #import "PlaceObject.h"
 #import "MyPoint.h"
 #import "MBXMapKit.h"
-#import <MapKit/MapKit.h>
 #import <Mapbox/Mapbox.h>
 
 @interface FirstViewController ()
@@ -36,7 +35,7 @@
     // TODO: -- find suitable name for JSON file
     // TODO: -- standardize name of object features
      */
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildings" ofType:@"geojson"];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
     NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
                                                               options:0
                                                                 error:nil];

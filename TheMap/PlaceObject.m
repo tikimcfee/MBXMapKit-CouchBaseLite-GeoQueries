@@ -10,10 +10,11 @@
 #import "FirstViewController.h"
 #import <MapKit/MapKit.h>
 
-@implementation PlaceObject
+@implementation PlaceObject 
 
 
 - (id) init {
+    self = [super init];
     myPoints = [[NSMutableArray alloc] init];
     return self;
 }

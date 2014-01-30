@@ -24,7 +24,7 @@
 - (void) addBoundPointToPlace:(MyPoint*) bound;
 - (NSInteger) getCount;
 - (CLLocationCoordinate2D*) getLocationBounds;
-- (MKPolygon *) getPolygonRepresentation;
+//- (MKPolygon *) getPolygonRepresentation;
 
 
 
