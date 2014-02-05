@@ -24,7 +24,7 @@
     NSString *mapID = @"sightplan.map-eth3a279";
     MBXMapView *mapView = [[MBXMapView alloc] initWithFrame:self.view.bounds mapID:mapID ];
     mapView.delegate = self;
-    [mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:20 animated:YES];
+    //[mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:20 animated:YES];
     [self.view addSubview:mapView];
     // XXX -- END MAP INITIALIZATION
     //  X  -- END MAP INITIALIZATION
@@ -35,7 +35,9 @@
     // TODO: -- find suitable name for JSON file
     // TODO: -- standardize name of object features
      */
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
+    
+    //NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"countriesREPLACED" ofType:@"geojson"];
     NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
                                                               options:0
                                                                 error:nil];
@@ -57,28 +59,55 @@
     // This is the future home of the code that will tag the modified PlaceObjects with their properties, as well as store
     // them in their respective floors, layers, etc.
      */
+    //NSMutableArray *places = [[buildings valueForKey:@"features"] mutableCopy];
     NSMutableArray *places = [[buildings valueForKey:@"features"] mutableCopy];
     NSMutableArray *temp_place_pointer = nil;
+    int i = 1;
     for(NSObject *place in places)
     {
+        NSLog(@"%d in place loop...", i++);
         PlaceObject *newPlace = [[PlaceObject alloc] init];
         temp_place_pointer = [[place valueForKeyPath:@"geometry.coordinates"] mutableCopy];
+        
+        /*
+        double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
+        double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
+        double boundB = [[place valueForKeyPath:@"properties.bound_color_B"] doubleValue];
+        double fillR = [[place valueForKeyPath:@"properties.fill_color_R"] doubleValue];
+        double fillG = [[place valueForKeyPath:@"properties.fill_color_G"] doubleValue];
+        double fillB = [[place valueForKeyPath:@"properties.fill_color_B"] doubleValue];
+        
+        */
+        [newPlace setBoundColor: [UIColor colorWithRed:.5 green:.5 blue:.5 alpha:.5]];
+        [newPlace setFillColor: [UIColor colorWithRed:.2 green:.2 blue:.2 alpha:.5]];
+        
+         [newPlace setMapView:mapView];
+         
         
         for(NSObject *point in [temp_place_pointer objectAtIndex:0])
         {
             [newPlace addCLPointToPlace:CLLocationCoordinate2DMake([[(NSArray*) point objectAtIndex:1] doubleValue],
                                                                    [[(NSArray*) point objectAtIndex:0] doubleValue])];
         }
-        MKPolygon *new_place_overlay = [MKPolygon polygonWithCoordinates:[newPlace getLocationBounds] count:[newPlace getCount]];
-        [mapView addOverlay:new_place_overlay];
+        
+        [newPlace drawSelfToScreen];
+        //MKPolygon *new_place_overlay = [MKPolygon polygonWithCoordinates:[newPlace getLocationBounds] count:[newPlace getCount]];
     }
     
     [super viewDidLoad];
     
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+/*
+- (MKOverlayRenderer *) mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
+    //MKPolygonRenderer *temp = [[MKPolygonRenderer alloc] initWithPolygon:[(PlaceObject*) overlay getPolygonRepresentation]];
+    
+    NSLog(@"super ... %@", NSStringFromClass([overlay superclass]) );
+    NSLog(@"super ... %@", NSStringFromClass([[overlay superclass] superclass]) );
+    NSLog(@"super ... %@", NSStringFromClass([[[overlay superclass] superclass] superclass]) );
+    NSLog(@"super ... %@", NSStringFromClass([[[[overlay superclass] superclass]superclass]superclass]) );
+    
     if ([overlay isKindOfClass:[MKPolyline class]]) {
         MKPolylineRenderer *lineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
         lineRenderer.strokeColor = [UIColor yellowColor];
@@ -87,14 +116,28 @@
     }
     else if([overlay isKindOfClass:[MKPolygon class]])
     {
-        MKPolygonRenderer *polyRenderer = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
-        polyRenderer.strokeColor = [UIColor yellowColor];
-        polyRenderer.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
-        polyRenderer.lineWidth = 2.0;
-        return polyRenderer;
+        if([overlay isKindOfClass:[PlaceObject class]])
+        {
+            MKPolygonRenderer *polyRenderer = [[MKPolygonRenderer alloc]
+                                               initWithPolygon:[(PlaceObject*)overlay getPolygonRepresentation]];
+            polyRenderer.strokeColor = [(PlaceObject*)overlay getBoundColor];
+            polyRenderer.fillColor = [(PlaceObject*)overlay getFillColor];
+            polyRenderer.lineWidth = [(PlaceObject*)overlay getWidth];
+            return polyRenderer;
+        }
+        else
+        {
+            MKPolygonRenderer *polyRenderer = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
+            polyRenderer.strokeColor = [UIColor yellowColor];
+            polyRenderer.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
+            polyRenderer.lineWidth = 2.0;
+            return polyRenderer;
+        }
     }
-        return nil;
+    
+    return nil;
 }
+ */
 
 - (void)didReceiveMemoryWarning
 {

@@ -5,23 +5,12 @@
                  "type": "Feature",
                  "properties":
                  {
-                 "bound_color_R" : "1.0",
-                 "bound_color_G" : "1.0",
-                 "bound_color_B" : "0.0",
-                 "fill_color_R" : "0.1",
+                    "bound_color_R" : "1.0",
+                    "bound_color_G" : "1.0",
+                    "bound_color_B" : "0.0",
+                 "fill_color_R" : "0.5",
                  "fill_color_G" : "0.5",
                  "fill_color_B" : "0.1",
-                 
-                 "building_name" : "Office of Administration",
-                 "building_type" : "Administration",
-                 "number_floors" : "3",
-                 "floors": [
-                            [
-                             ["office 1a", "office 1b", "office 1c"],
-                             ["office 2a", "office 2b"],
-                             ["showroom 3a"]
-                             ]
-                            ]
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -59,12 +48,12 @@
                  "type": "Feature",
                  "properties":
                  {
-                 "bound_color_R" : "0.3",
-                 "bound_color_G" : "0.4",
-                 "bound_color_B" : "0.2",
-                 "fill_color_R" : "0.3",
-                 "fill_color_G" : "0.3",
-                 "fill_color_B" : "0.2",
+                 "bound_color_R" : "0.0",
+                 "bound_color_G" : "1.0",
+                 "bound_color_B" : "0.0",
+                 "fill_color_R" : "0.5",
+                 "fill_color_G" : "0.5",
+                 "fill_color_B" : "0.1",
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -101,9 +90,9 @@
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
-                 "fill_color_R" : "0.4",
-                 "fill_color_G" : "0.9",
-                 "fill_color_B" : "0.2",
+                 "fill_color_R" : "0.5",
+                 "fill_color_G" : "0.5",
+                 "fill_color_B" : "0.1",
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -152,9 +141,9 @@
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
-                 "fill_color_R" : "0.6",
-                 "fill_color_G" : "0.1",
-                 "fill_color_B" : "0.2",
+                 "fill_color_R" : "0.5",
+                 "fill_color_G" : "0.5",
+                 "fill_color_B" : "0.1",
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -191,9 +180,9 @@
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
-                 "fill_color_R" : "0.2",
-                 "fill_color_G" : "0.1",
-                 "fill_color_B" : "0.4",
+                 "fill_color_R" : "0.5",
+                 "fill_color_G" : "0.5",
+                 "fill_color_B" : "0.1",
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -230,9 +219,9 @@
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
-                 "fill_color_R" : "0.9",
-                 "fill_color_G" : "0.2",
-                 "fill_color_B" : "0.99",
+                 "fill_color_R" : "0.5",
+                 "fill_color_G" : "0.5",
+                 "fill_color_B" : "0.1",
                  },
                  "geometry": {
                  "type": "Polygon",

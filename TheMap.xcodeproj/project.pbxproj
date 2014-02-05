@@ -12,7 +12,9 @@
 		4541687A18972A7B00FC746E /* buildings.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 4541687918972A7B00FC746E /* buildings.geojson */; };
 		4541687D189734E500FC746E /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541687C189734E500FC746E /* BuildingAnnotation.m */; };
 		454168811897462900FC746E /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541687F18973DB700FC746E /* MyPoint.m */; };
+		45416884189AC03A00FC746E /* buildingTest.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 45416883189AC03900FC746E /* buildingTest.geojson */; };
 		455EC6271887537300E79682 /* buildingsNew.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 455EC6261887537300E79682 /* buildingsNew.geojson */; };
+		45A650FC18A29827004CF835 /* countriesREPLACED.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 45A650FB18A29827004CF835 /* countriesREPLACED.geojson */; };
 		45AEE2201886096D00215B75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE21F1886096D00215B75 /* Foundation.framework */; };
 		45AEE2221886096D00215B75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2211886096D00215B75 /* CoreGraphics.framework */; };
 		45AEE2241886096E00215B75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2231886096D00215B75 /* UIKit.framework */; };
@@ -60,7 +62,9 @@
 		4541687C189734E500FC746E /* BuildingAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingAnnotation.m; sourceTree = "<group>"; };
 		4541687F18973DB700FC746E /* MyPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		4541688018973DE000FC746E /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
+		45416883189AC03900FC746E /* buildingTest.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildingTest.geojson; sourceTree = "<group>"; };
 		455EC6261887537300E79682 /* buildingsNew.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildingsNew.geojson; sourceTree = SOURCE_ROOT; };
+		45A650FB18A29827004CF835 /* countriesREPLACED.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countriesREPLACED.geojson; sourceTree = "<group>"; };
 		45AEE21C1886096D00215B75 /* TheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45AEE21F1886096D00215B75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		45AEE2211886096D00215B75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -152,7 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				4541687918972A7B00FC746E /* buildings.geojson */,
+				45A650FB18A29827004CF835 /* countriesREPLACED.geojson */,
 				455EC6261887537300E79682 /* buildingsNew.geojson */,
+				45416883189AC03900FC746E /* buildingTest.geojson */,
 				45AEE26518860B6100215B75 /* Mapbox.bundle */,
 				45AEE2251886096E00215B75 /* TheMap */,
 				45AEE24A1886096E00215B75 /* TheMapTests */,
@@ -311,8 +317,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45416884189AC03A00FC746E /* buildingTest.geojson in Resources */,
 				45AEE2361886096E00215B75 /* Main_iPad.storyboard in Resources */,
 				45AEE23E1886096E00215B75 /* Images.xcassets in Resources */,
+				45A650FC18A29827004CF835 /* countriesREPLACED.geojson in Resources */,
 				45AEE26618860B6100215B75 /* Mapbox.bundle in Resources */,
 				45AEE2331886096E00215B75 /* Main_iPhone.storyboard in Resources */,
 				45AEE22A1886096E00215B75 /* InfoPlist.strings in Resources */,
