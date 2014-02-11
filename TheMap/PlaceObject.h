@@ -9,13 +9,10 @@
 #ifndef TheMap_MyPoint_h
 #define TheMap_MyPoint_h
 #endif
-#import <MapKit/MapKit.h>
 #import "MBXMapKit.h"
 #import "MyPoint.h"
 
-
-// Trying to make PlaceObject an MKOverlay.. dunno if it will work
-@interface PlaceObject: MKPolygon
+@interface PlaceObject: MKPolygon <MKMapViewDelegate>
 {
     NSMutableArray *bound_points;
     NSData *place_properties;
@@ -45,7 +42,5 @@
 - (void) drawSelfToScreen;
 - (MKPolygon *) getPolygonRepresentation;
 - (MKOverlayRenderer *) mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay;
-
-//- (void) drawSelfToScreen: (MKMapView *)mapView;
 
 @end

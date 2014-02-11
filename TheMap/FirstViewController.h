@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
+#import "PlaceObject.h"
+#import <CouchbaseLite/CouchbaseLite.h>
+#import <CouchbaseLite/CBLDocument.h>
 
 @interface FirstViewController : UIViewController <MKMapViewDelegate>
 

@@ -7,12 +7,11 @@
 //
 
 #import "PlaceObject.h"
-#import "FirstViewController.h"
-#import <MapKit/MapKit.h>
 
-@implementation PlaceObject: MKPolygon
+@implementation PlaceObject
 
-- (id) init {
+- (id) init
+{
     self = [super init];
     bound_points = [[NSMutableArray alloc] init];
     bound_color = [UIColor blackColor];

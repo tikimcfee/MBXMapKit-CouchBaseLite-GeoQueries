@@ -5,6 +5,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "1.0",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -59,6 +60,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.3",
                  "bound_color_G" : "0.4",
                  "bound_color_B" : "0.2",
@@ -98,6 +100,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -149,6 +152,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "emergency",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -188,6 +192,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "garage",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -227,6 +232,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -266,6 +272,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -309,6 +316,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -348,6 +356,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -387,6 +396,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -426,6 +436,7 @@
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",

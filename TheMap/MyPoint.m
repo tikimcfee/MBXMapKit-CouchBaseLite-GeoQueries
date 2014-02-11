@@ -7,8 +7,6 @@
 //
 
 #import "MyPoint.h"
-#import "FirstViewController.h"
-#import <Mapbox/Mapbox.h>
 
 @implementation MyPoint
 

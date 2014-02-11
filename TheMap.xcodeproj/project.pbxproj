@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4513C56F189087FF00B6E06E /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4513C56E189087FF00B6E06E /* PlaceObject.m */; };
-		453BA90E188F46D70089441C /* FirstViewController-old in Resources */ = {isa = PBXBuildFile; fileRef = 453BA90D188F46D70089441C /* FirstViewController-old */; };
-		4541687A18972A7B00FC746E /* buildings.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 4541687918972A7B00FC746E /* buildings.geojson */; };
-		4541687D189734E500FC746E /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541687C189734E500FC746E /* BuildingAnnotation.m */; };
+		451D623718A300FC005DFD56 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D623618A300FC005DFD56 /* CFNetwork.framework */; };
+		451D623918A30105005DFD56 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D623818A30105005DFD56 /* Security.framework */; };
+		451D623B18A30113005DFD56 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451D623A18A30113005DFD56 /* SystemConfiguration.framework */; };
 		454168811897462900FC746E /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541687F18973DB700FC746E /* MyPoint.m */; };
-		45416884189AC03A00FC746E /* buildingTest.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 45416883189AC03900FC746E /* buildingTest.geojson */; };
 		455EC6271887537300E79682 /* buildingsNew.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 455EC6261887537300E79682 /* buildingsNew.geojson */; };
-		45A650FC18A29827004CF835 /* countriesREPLACED.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 45A650FB18A29827004CF835 /* countriesREPLACED.geojson */; };
 		45AEE2201886096D00215B75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE21F1886096D00215B75 /* Foundation.framework */; };
 		45AEE2221886096D00215B75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2211886096D00215B75 /* CoreGraphics.framework */; };
 		45AEE2241886096E00215B75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2231886096D00215B75 /* UIKit.framework */; };
@@ -31,16 +29,13 @@
 		45AEE2471886096E00215B75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE2231886096D00215B75 /* UIKit.framework */; };
 		45AEE24F1886096E00215B75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45AEE24D1886096E00215B75 /* InfoPlist.strings */; };
 		45AEE2511886096E00215B75 /* TheMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AEE2501886096E00215B75 /* TheMapTests.m */; };
-		45AEE25B18860A4D00215B75 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE25A18860A4D00215B75 /* Mapbox.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		45AEE25C18860A4D00215B75 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE25A18860A4D00215B75 /* Mapbox.framework */; };
 		45AEE25E18860AF200215B75 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE25D18860AF200215B75 /* CoreLocation.framework */; };
 		45AEE26018860B0300215B75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE25F18860B0300215B75 /* QuartzCore.framework */; };
 		45AEE26218860B1900215B75 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE26118860B1900215B75 /* libsqlite3.dylib */; };
 		45AEE26418860B2700215B75 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AEE26318860B2700215B75 /* libz.dylib */; };
-		45AEE26618860B6100215B75 /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 45AEE26518860B6100215B75 /* Mapbox.bundle */; };
-		45AEE26718860B6100215B75 /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 45AEE26518860B6100215B75 /* Mapbox.bundle */; };
 		45BE5C6E1897197100D74A4F /* MBXMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BE5C6D1897197100D74A4F /* MBXMapKit.m */; };
 		45BE5C70189719AC00D74A4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45BE5C6F189719AC00D74A4F /* MapKit.framework */; };
+		45D4912218A4539700D85890 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D4912118A4539700D85890 /* CouchbaseLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,10 +51,10 @@
 /* Begin PBXFileReference section */
 		4513C56D1890877A00B6E06E /* PlaceObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
 		4513C56E189087FF00B6E06E /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
-		453BA90D188F46D70089441C /* FirstViewController-old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FirstViewController-old"; sourceTree = "<group>"; };
+		451D623618A300FC005DFD56 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		451D623818A30105005DFD56 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		451D623A18A30113005DFD56 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4541687918972A7B00FC746E /* buildings.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildings.geojson; sourceTree = SOURCE_ROOT; };
-		4541687B189734E500FC746E /* BuildingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingAnnotation.h; sourceTree = "<group>"; };
-		4541687C189734E500FC746E /* BuildingAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingAnnotation.m; sourceTree = "<group>"; };
 		4541687F18973DB700FC746E /* MyPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		4541688018973DE000FC746E /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
 		45416883189AC03900FC746E /* buildingTest.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildingTest.geojson; sourceTree = "<group>"; };
@@ -87,15 +82,14 @@
 		45AEE24C1886096E00215B75 /* TheMapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TheMapTests-Info.plist"; sourceTree = "<group>"; };
 		45AEE24E1886096E00215B75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		45AEE2501886096E00215B75 /* TheMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheMapTests.m; sourceTree = "<group>"; };
-		45AEE25A18860A4D00215B75 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = ../Mapbox.framework; sourceTree = "<group>"; };
 		45AEE25D18860AF200215B75 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		45AEE25F18860B0300215B75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		45AEE26118860B1900215B75 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		45AEE26318860B2700215B75 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		45AEE26518860B6100215B75 /* Mapbox.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Mapbox.bundle; path = ../Mapbox.framework/Versions/A/Resources/Mapbox.bundle; sourceTree = "<group>"; };
 		45BE5C6C1897197100D74A4F /* MBXMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXMapKit.h; sourceTree = SOURCE_ROOT; };
 		45BE5C6D1897197100D74A4F /* MBXMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXMapKit.m; sourceTree = SOURCE_ROOT; };
 		45BE5C6F189719AC00D74A4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		45D4912118A4539700D85890 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = "../../APIs and Documentation/couchbase-lite-community-ios_1.0-beta2/CouchbaseLite.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +97,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D4912218A4539700D85890 /* CouchbaseLite.framework in Frameworks */,
+				451D623B18A30113005DFD56 /* SystemConfiguration.framework in Frameworks */,
+				451D623918A30105005DFD56 /* Security.framework in Frameworks */,
+				451D623718A300FC005DFD56 /* CFNetwork.framework in Frameworks */,
 				45AEE2201886096D00215B75 /* Foundation.framework in Frameworks */,
 				45AEE2241886096E00215B75 /* UIKit.framework in Frameworks */,
 				45AEE2221886096D00215B75 /* CoreGraphics.framework in Frameworks */,
 				45AEE26018860B0300215B75 /* QuartzCore.framework in Frameworks */,
 				45AEE25E18860AF200215B75 /* CoreLocation.framework in Frameworks */,
-				45AEE25B18860A4D00215B75 /* Mapbox.framework in Frameworks */,
 				45BE5C70189719AC00D74A4F /* MapKit.framework in Frameworks */,
 				45AEE26418860B2700215B75 /* libz.dylib in Frameworks */,
 				45AEE26218860B1900215B75 /* libsqlite3.dylib in Frameworks */,
@@ -122,23 +119,12 @@
 				45AEE2451886096E00215B75 /* XCTest.framework in Frameworks */,
 				45AEE2471886096E00215B75 /* UIKit.framework in Frameworks */,
 				45AEE2461886096E00215B75 /* Foundation.framework in Frameworks */,
-				45AEE25C18860A4D00215B75 /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4541687E18973A8D00FC746E /* OldHANDM */ = {
-			isa = PBXGroup;
-			children = (
-				453BA90D188F46D70089441C /* FirstViewController-old */,
-				4541687B189734E500FC746E /* BuildingAnnotation.h */,
-				4541687C189734E500FC746E /* BuildingAnnotation.m */,
-			);
-			name = OldHANDM;
-			sourceTree = "<group>";
-		};
 		45416882189879CA00FC746E /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +145,6 @@
 				45A650FB18A29827004CF835 /* countriesREPLACED.geojson */,
 				455EC6261887537300E79682 /* buildingsNew.geojson */,
 				45416883189AC03900FC746E /* buildingTest.geojson */,
-				45AEE26518860B6100215B75 /* Mapbox.bundle */,
 				45AEE2251886096E00215B75 /* TheMap */,
 				45AEE24A1886096E00215B75 /* TheMapTests */,
 				45AEE21E1886096D00215B75 /* Frameworks */,
@@ -179,12 +164,15 @@
 		45AEE21E1886096D00215B75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45D4912118A4539700D85890 /* CouchbaseLite.framework */,
+				451D623A18A30113005DFD56 /* SystemConfiguration.framework */,
+				451D623818A30105005DFD56 /* Security.framework */,
+				451D623618A300FC005DFD56 /* CFNetwork.framework */,
 				45BE5C6F189719AC00D74A4F /* MapKit.framework */,
 				45AEE26318860B2700215B75 /* libz.dylib */,
 				45AEE26118860B1900215B75 /* libsqlite3.dylib */,
 				45AEE25F18860B0300215B75 /* QuartzCore.framework */,
 				45AEE25D18860AF200215B75 /* CoreLocation.framework */,
-				45AEE25A18860A4D00215B75 /* Mapbox.framework */,
 				45AEE21F1886096D00215B75 /* Foundation.framework */,
 				45AEE2211886096D00215B75 /* CoreGraphics.framework */,
 				45AEE2231886096D00215B75 /* UIKit.framework */,
@@ -207,7 +195,6 @@
 				45AEE23B1886096E00215B75 /* SecondViewController.m */,
 				45AEE2311886096E00215B75 /* Main_iPhone.storyboard */,
 				45AEE2341886096E00215B75 /* Main_iPad.storyboard */,
-				4541687E18973A8D00FC746E /* OldHANDM */,
 			);
 			path = TheMap;
 			sourceTree = "<group>";
@@ -317,16 +304,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45416884189AC03A00FC746E /* buildingTest.geojson in Resources */,
 				45AEE2361886096E00215B75 /* Main_iPad.storyboard in Resources */,
 				45AEE23E1886096E00215B75 /* Images.xcassets in Resources */,
-				45A650FC18A29827004CF835 /* countriesREPLACED.geojson in Resources */,
-				45AEE26618860B6100215B75 /* Mapbox.bundle in Resources */,
 				45AEE2331886096E00215B75 /* Main_iPhone.storyboard in Resources */,
 				45AEE22A1886096E00215B75 /* InfoPlist.strings in Resources */,
-				4541687A18972A7B00FC746E /* buildings.geojson in Resources */,
 				455EC6271887537300E79682 /* buildingsNew.geojson in Resources */,
-				453BA90E188F46D70089441C /* FirstViewController-old in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +316,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45AEE26718860B6100215B75 /* Mapbox.bundle in Resources */,
 				45AEE24F1886096E00215B75 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +334,6 @@
 				454168811897462900FC746E /* MyPoint.m in Sources */,
 				45AEE22C1886096E00215B75 /* main.m in Sources */,
 				45BE5C6E1897197100D74A4F /* MBXMapKit.m in Sources */,
-				4541687D189734E500FC746E /* BuildingAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,11 +468,14 @@
 		45AEE2551886096E00215B75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ivanlugo/Desktop/SightPlan/XCode,
+					/Users/ivanlugo/Desktop/SightPlan/XCode/TheMap,
+					"/Users/ivanlugo/Desktop/SightPlan/APIs\\ and\\ Documentation/couchbase-lite-community-ios_1.0-beta2",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheMap/TheMap-Prefix.pch";
@@ -506,11 +489,14 @@
 		45AEE2561886096E00215B75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ivanlugo/Desktop/SightPlan/XCode,
+					/Users/ivanlugo/Desktop/SightPlan/XCode/TheMap,
+					"/Users/ivanlugo/Desktop/SightPlan/APIs\\ and\\ Documentation/couchbase-lite-community-ios_1.0-beta2",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheMap/TheMap-Prefix.pch";

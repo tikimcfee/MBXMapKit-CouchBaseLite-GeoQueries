@@ -9,7 +9,7 @@
 #ifndef TheMap_MyPoint_h
 #define TheMap_MyPoint_h
 #endif
-#import <Mapbox/Mapbox.h>
+#import <MapKit/MapKit.h>
 
 @interface MyPoint:NSObject
 {

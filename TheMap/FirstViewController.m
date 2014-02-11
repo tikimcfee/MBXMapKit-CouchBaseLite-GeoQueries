@@ -6,13 +6,14 @@
 //  Copyright (c) 2014 Ivan Lugo. All rights reserved.
 //
 
+
 #import "FirstViewController.h"
-#import "PlaceObject.h"
-#import "MyPoint.h"
-#import "MBXMapKit.h"
-#import <Mapbox/Mapbox.h>
 
 @interface FirstViewController ()
+@property (nonatomic, weak) MBXMapView *mapView;
+@property (strong, nonatomic) CBLDatabase *database;
+@property (strong, nonatomic) CBLManager *manager;
+
 
 @end
 
@@ -20,38 +21,43 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     // Constructing the Map, setting delegates, centering
     NSString *mapID = @"sightplan.map-eth3a279";
     MBXMapView *mapView = [[MBXMapView alloc] initWithFrame:self.view.bounds mapID:mapID ];
     mapView.delegate = self;
-    //[mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:20 animated:YES];
+    [self loadCoachbase];
+    [mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:20 animated:YES];
+    
+    
+    //================================================================================================================
+    UIButton *leftButton = [[UIButton alloc] initWithFrame: CGRectMake(10, 470, 100, 30)];
+    [leftButton addTarget:nil
+                   action:@selector(pressed)
+         forControlEvents:UIControlEventTouchDown];
+    
+    [leftButton setTitle:@"Ammenities" forState: UIControlStateNormal];
+
+    [leftButton setBackgroundColor:[UIColor colorWithRed:0/255.0f
+                                                    green:106/255.0f
+                                                     blue:166/255.0f
+                                                    alpha:1.0]];
+    [leftButton setTitleColor:[UIColor colorWithRed:166/255.0f
+                                               green:60/255.0f
+                                                blue:0/255.0f
+                                               alpha:1.0]
+                                            forState:UIControlStateNormal];
+
     [self.view addSubview:mapView];
-    // XXX -- END MAP INITIALIZATION
-    //  X  -- END MAP INITIALIZATION
+    self.mapView = mapView;
+    [self.view addSubview:leftButton];
+    //================================================================================================================
     
     
-    
-    /* Start parsing 'building.geojson' to create Place objects.
-    // TODO: -- find suitable name for JSON file
-    // TODO: -- standardize name of object features
-     */
-    
-    //NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"countriesREPLACED" ofType:@"geojson"];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
     NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
                                                               options:0
                                                                 error:nil];
-    
-    /* Build iterable array of points from JSON object
-    // NOTE -- The current strucuture of the .geojson file has the bounding points wrapped within an object array, so
-    //         they must be accessed with an 'objectAtIndex:0'. This might change when we have places within places
-     
-    NSMutableArray *points = [[[[buildings objectForKey:@"features"] objectAtIndex:0]
-                               valueForKeyPath:@"geometry.coordinates"] mutableCopy];
-    // XXX -- END JSON PARSING
-    //  X  -- END JSON PARSING
-    */
-    
     
     /* Iterate through the features described in the JSON file and create PlaceObject's to represent them, drawing them
     // as we go.
@@ -59,17 +65,22 @@
     // This is the future home of the code that will tag the modified PlaceObjects with their properties, as well as store
     // them in their respective floors, layers, etc.
      */
-    //NSMutableArray *places = [[buildings valueForKey:@"features"] mutableCopy];
     NSMutableArray *places = [[buildings valueForKey:@"features"] mutableCopy];
+    NSMutableArray *objects = [[NSMutableArray alloc] init];
+    [self placesToDraw:places containerForNewPlaces:objects];
+    
+}
+
+- (void) placesToDraw:(NSMutableArray*)places containerForNewPlaces:(NSMutableArray*)objects
+{
     NSMutableArray *temp_place_pointer = nil;
-    int i = 1;
     for(NSObject *place in places)
     {
-        NSLog(@"%d in place loop...", i++);
         PlaceObject *newPlace = [[PlaceObject alloc] init];
+        [objects addObject:newPlace];
+        
         temp_place_pointer = [[place valueForKeyPath:@"geometry.coordinates"] mutableCopy];
         
-        /*
         double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
         double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
         double boundB = [[place valueForKeyPath:@"properties.bound_color_B"] doubleValue];
@@ -77,12 +88,10 @@
         double fillG = [[place valueForKeyPath:@"properties.fill_color_G"] doubleValue];
         double fillB = [[place valueForKeyPath:@"properties.fill_color_B"] doubleValue];
         
-        */
-        [newPlace setBoundColor: [UIColor colorWithRed:.5 green:.5 blue:.5 alpha:.5]];
-        [newPlace setFillColor: [UIColor colorWithRed:.2 green:.2 blue:.2 alpha:.5]];
-        
-         [newPlace setMapView:mapView];
-         
+        [newPlace setBoundColor: [UIColor colorWithRed:boundR green:boundG blue:boundB alpha:.5]];
+        [newPlace setFillColor: [UIColor colorWithRed:fillR green:fillG blue:fillB alpha:.5]];
+        [newPlace setBoundWidth: 3.0];
+        [newPlace setMapView:self.mapView];
         
         for(NSObject *point in [temp_place_pointer objectAtIndex:0])
         {
@@ -91,53 +100,85 @@
         }
         
         [newPlace drawSelfToScreen];
-        //MKPolygon *new_place_overlay = [MKPolygon polygonWithCoordinates:[newPlace getLocationBounds] count:[newPlace getCount]];
+    }
+}
+
+- (void)loadCoachbase
+{
+    // Creates a shared instance of CBLManager
+    self.manager = [CBLManager sharedInstance];
+    
+    // Create a database!
+    NSError *error;
+    self.database = [self.manager databaseNamed:@"place-data" error: &error];
+    
+    
+    BOOL result = [self sayHello];
+    NSLog(@"This instance was %@.", (result ? @"a total success." : @"a failure that may bring upon us the destruction of man."));
+}
+
+// creates a database, and then creates, stores, and retrieves a document
+- (BOOL) sayHello {
+    
+    // holds error error messages from unsuccessful calls
+    NSError *error;
+    
+    if (!self.manager) {
+        NSLog (@"Cannot create shared instance of CBLManager");
+        return NO;
     }
     
-    [super viewDidLoad];
+    // create a name for the database and make sure the name is legal
+    NSString *dbname = @"my_place_database";
+    if (![CBLManager isValidDatabaseName: dbname]) {
+        NSLog (@"Bad database name");
+        return NO;
+    }
+    
+    // create a new database
+    self.database = [self.manager databaseNamed: dbname error: &error];
+    if (!self.database) {
+        NSLog (@"Cannot create database. Error message: %@", error.localizedDescription);
+        return NO;
+    }
+    
+    // create an object that contains data for the new document
+//    NSDictionary *myDictionary =[NSDictionary dictionaryWithObjectsAndKeys:@"Hello Couchbase Lite!", @"message", [[NSDate date] description], @"timestamp",
+//     nil];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
+    NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
+                                                              options:0
+                                                                error:nil];
+    
+    // display the data for the new document
+    NSLog (@"This is the data for the document: %@", buildings);
+    
+    // create an empty document
+    CBLDocument* doc = [self.database createDocument];
+    
+    // write the document to the database
+    CBLRevision *newRevision = [doc putProperties: buildings error: &error];
+    if (!newRevision) {
+        NSLog (@"Cannot write document to database. Error message: %@", error.localizedDescription);
+    }
+    
+    // save the ID of the new document
+    NSString *docID = doc.documentID;
+    
+    // retrieve the document from the database
+    CBLDocument *retrievedDoc = [self.database documentWithID: docID];
+    
+    // display the retrieved document
+    NSLog(@"The retrieved document contains: %@", retrievedDoc.properties);
+    
+    return YES;
     
 }
 
-/*
-- (MKOverlayRenderer *) mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+- (void)pressed
 {
-    //MKPolygonRenderer *temp = [[MKPolygonRenderer alloc] initWithPolygon:[(PlaceObject*) overlay getPolygonRepresentation]];
-    
-    NSLog(@"super ... %@", NSStringFromClass([overlay superclass]) );
-    NSLog(@"super ... %@", NSStringFromClass([[overlay superclass] superclass]) );
-    NSLog(@"super ... %@", NSStringFromClass([[[overlay superclass] superclass] superclass]) );
-    NSLog(@"super ... %@", NSStringFromClass([[[[overlay superclass] superclass]superclass]superclass]) );
-    
-    if ([overlay isKindOfClass:[MKPolyline class]]) {
-        MKPolylineRenderer *lineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
-        lineRenderer.strokeColor = [UIColor yellowColor];
-        lineRenderer.lineWidth = 2.0;
-        return lineRenderer;
-    }
-    else if([overlay isKindOfClass:[MKPolygon class]])
-    {
-        if([overlay isKindOfClass:[PlaceObject class]])
-        {
-            MKPolygonRenderer *polyRenderer = [[MKPolygonRenderer alloc]
-                                               initWithPolygon:[(PlaceObject*)overlay getPolygonRepresentation]];
-            polyRenderer.strokeColor = [(PlaceObject*)overlay getBoundColor];
-            polyRenderer.fillColor = [(PlaceObject*)overlay getFillColor];
-            polyRenderer.lineWidth = [(PlaceObject*)overlay getWidth];
-            return polyRenderer;
-        }
-        else
-        {
-            MKPolygonRenderer *polyRenderer = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
-            polyRenderer.strokeColor = [UIColor yellowColor];
-            polyRenderer.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
-            polyRenderer.lineWidth = 2.0;
-            return polyRenderer;
-        }
-    }
-    
-    return nil;
+    NSLog(@"AW YEAH!!");
 }
- */
 
 - (void)didReceiveMemoryWarning
 {
