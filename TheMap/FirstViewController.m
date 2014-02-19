@@ -10,7 +10,7 @@
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
-@property (nonatomic, weak) MBXMapView *mapView;
+@property (nonatomic, strong) MBXMapView *mapView;
 @property (strong, nonatomic) CBLDatabase *database;
 @property (strong, nonatomic) CBLManager *manager;
 
@@ -23,41 +23,60 @@
 {
     [super viewDidLoad];
     // Constructing the Map, setting delegates, centering
-    NSString *mapID = @"sightplan.map-eth3a279";
-    MBXMapView *mapView = [[MBXMapView alloc] initWithFrame:self.view.bounds mapID:mapID ];
-    mapView.delegate = self;
-    [self loadCoachbase];
-    [mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:20 animated:YES];
+    //NSString *mapID = @"sightplan.map-eth3a279";
+    NSString *mapID = @"mozilla-webprod.e91ef8b3";
+    self.mapView = [[MBXMapView alloc] initWithFrame:self.view.bounds mapID:mapID ];
+    self.mapView.delegate = self;
+    [self loadCouchbase];
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:19 animated:YES];
     
     
     //================================================================================================================
-    UIButton *leftButton = [[UIButton alloc] initWithFrame: CGRectMake(10, 470, 100, 30)];
-    [leftButton addTarget:nil
-                   action:@selector(pressed)
-         forControlEvents:UIControlEventTouchDown];
+    UIButton *ammenities_button = [[UIButton alloc] initWithFrame: CGRectMake(10, 470, 100, 30)];
+    [ammenities_button addTarget:nil
+                          action:@selector(pressed:)
+                forControlEvents:UIControlEventTouchDown];
     
-    [leftButton setTitle:@"Ammenities" forState: UIControlStateNormal];
+    [ammenities_button setTitle:@"Ammenities" forState: UIControlStateNormal];
 
-    [leftButton setBackgroundColor:[UIColor colorWithRed:0/255.0f
+    [ammenities_button setBackgroundColor:[UIColor colorWithRed:0/255.0f
                                                     green:106/255.0f
                                                      blue:166/255.0f
                                                     alpha:1.0]];
-    [leftButton setTitleColor:[UIColor colorWithRed:166/255.0f
+    [ammenities_button setTitleColor:[UIColor colorWithRed:166/255.0f
                                                green:60/255.0f
                                                 blue:0/255.0f
                                                alpha:1.0]
                                             forState:UIControlStateNormal];
+    
+    UIButton *resident_button = [[UIButton alloc] initWithFrame: CGRectMake(120, 470, 100, 30)];
+    [resident_button addTarget:nil
+                        action:@selector(pressed:)
+              forControlEvents:UIControlEventTouchDown];
+    
+    [resident_button setTitle:@"Residents" forState: UIControlStateNormal];
+    
+    [resident_button setBackgroundColor:[UIColor colorWithRed:0/255.0f
+                                                          green:106/255.0f
+                                                           blue:166/255.0f
+                                                            alpha:1.0]];
+    
+    [resident_button setTitleColor:[UIColor colorWithRed:166/255.0f
+                                                     green:60/255.0f
+                                                      blue:0/255.0f
+                                                     alpha:1.0]
+                          forState:UIControlStateNormal];
 
-    [self.view addSubview:mapView];
-    self.mapView = mapView;
-    [self.view addSubview:leftButton];
+    [self.view addSubview:self.mapView];
+    [self.view addSubview:ammenities_button];
+    [self.view addSubview:resident_button];
     //================================================================================================================
     
-    
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
-    NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
-                                                              options:0
-                                                                error:nil];
+//    
+//    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
+//    NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
+//                                                              options:0
+//                                                                error:nil];
     
     /* Iterate through the features described in the JSON file and create PlaceObject's to represent them, drawing them
     // as we go.
@@ -65,21 +84,22 @@
     // This is the future home of the code that will tag the modified PlaceObjects with their properties, as well as store
     // them in their respective floors, layers, etc.
      */
-    NSMutableArray *places = [[buildings valueForKey:@"features"] mutableCopy];
-    NSMutableArray *objects = [[NSMutableArray alloc] init];
-    [self placesToDraw:places containerForNewPlaces:objects];
+    //    NSMutableArray *places = [[buildings valueForKey:@"features"] mutableCopy];
+    //    NSMutableArray *objects = [[NSMutableArray alloc] init];
+    //[self placesToDraw:places containerForNewPlaces:objects];
     
 }
 
-- (void) placesToDraw:(NSMutableArray*)places containerForNewPlaces:(NSMutableArray*)objects
+- (void) placesToDraw:(NSMutableArray*)places containerForNewPlaces:(NSMutableArray*)objects //mapCanvas:(MBXMapView*)mapView
 {
     NSMutableArray *temp_place_pointer = nil;
     for(NSObject *place in places)
     {
+        NSLog(@"The place is: %@", place);
         PlaceObject *newPlace = [[PlaceObject alloc] init];
         [objects addObject:newPlace];
         
-        temp_place_pointer = [[place valueForKeyPath:@"geometry.coordinates"] mutableCopy];
+        temp_place_pointer = [place valueForKeyPath:@"geometry.coordinates"];
         
         double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
         double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
@@ -103,7 +123,7 @@
     }
 }
 
-- (void)loadCoachbase
+- (void)loadCouchbase
 {
     // Creates a shared instance of CBLManager
     self.manager = [CBLManager sharedInstance];
@@ -143,41 +163,102 @@
     }
     
     // create an object that contains data for the new document
-//    NSDictionary *myDictionary =[NSDictionary dictionaryWithObjectsAndKeys:@"Hello Couchbase Lite!", @"message", [[NSDate date] description], @"timestamp",
-//     nil];
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"buildingsNew" ofType:@"geojson"];
     NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
                                                               options:0
                                                                 error:nil];
-    
-    // display the data for the new document
-    NSLog (@"This is the data for the document: %@", buildings);
-    
-    // create an empty document
-    CBLDocument* doc = [self.database createDocument];
-    
-    // write the document to the database
-    CBLRevision *newRevision = [doc putProperties: buildings error: &error];
-    if (!newRevision) {
-        NSLog (@"Cannot write document to database. Error message: %@", error.localizedDescription);
+
+    NSDictionary *places = [buildings valueForKey:@"features"];
+    for(NSObject *place in places)
+    {
+        //NSLog(@"The dictionary string is %@", place);
+        CBLDocument* doc = [self.database createDocument];
+        //[doc putProperties:(NSDictionary*) place error:&error];
+        CBLRevision *newRevision = [doc putProperties:(NSDictionary*)place error: &error];
+        if (!newRevision) {
+            NSLog (@"Already found the entry in the database. Error message: %@", error.localizedDescription);
+         
+        }
     }
     
-    // save the ID of the new document
-    NSString *docID = doc.documentID;
     
-    // retrieve the document from the database
-    CBLDocument *retrievedDoc = [self.database documentWithID: docID];
+    // create a view so we can define a map function that will find every
+    // instance of a document that contains a key specified, and emit that
+    // into the view, where it can be queried in the code below
+    CBLView *view = [self.database viewNamed:@"places"];
     
-    // display the retrieved document
-    NSLog(@"The retrieved document contains: %@", retrievedDoc.properties);
+    [view setMapBlock: MAPBLOCK({
+        id place = [doc objectForKey:@"place"];
+        if (place)
+        {
+            NSLog(@"The place found is %@", place);
+            emit(place, doc);
+        }
+    }) version: @"1.0"];
+    
+    // we generate a new query object from the database with the same name
+    // as the view we defined above. We then create an enumerator from that
+    // querry after it has run, which contains a set of rows that contain a
+    // key / value pair.
+    CBLQuery* query = [[self.database viewNamed: @"places"] createQuery];
+    CBLQueryEnumerator *rowEnum = [query run: &error];
+    for (CBLQueryRow* row in rowEnum)
+    {
+        // WARNING - THIS WILL DELETE ALL THE DOCUMENTS IN THE LOCAL DATABASE!!
+        // Use this to clear out the database
+        
+        //if(![row.document deleteDocument:&error])
+        //    NSLog(@"Why not? -- %@", error.localizedDescription);
+        
+        //NSLog(@"The place type is : %@", row.key);
+        //NSLog(@"The place value is : %@", row.value);
+    }
+    
+    
+    // an array MUST be read as a 'property' by Couchbase, NOT a value!!
+    //NSMutableArray *places = [retrievedDoc propertyForKey:@"features"];
+    
+    //NSMutableArray *objects = [[NSMutableArray alloc] init];
+    //[self placesToDraw:places containerForNewPlaces:objects];
     
     return YES;
     
 }
 
-- (void)pressed
+- (void)pressed:(UIButton*)tapped
 {
-    NSLog(@"AW YEAH!!");
+    NSError *error;
+    CBLQuery* query = [[self.database viewNamed: @"places"] createQuery];
+    CBLQueryEnumerator *rowEnum = [query run: &error];
+    NSMutableArray *drawThese = [[NSMutableArray alloc] init];
+    
+    if( [[tapped currentTitle] isEqualToString:@"Ammenities"])
+    {
+        for (CBLQueryRow* row in rowEnum)
+        {
+            if([row.key isEqualToString:@"amenity"])
+            {
+                [drawThese addObject:row.value];
+            }
+        }
+    }
+    else if( [[tapped currentTitle] isEqualToString:@"Residents"])
+    {
+        for (CBLQueryRow* row in rowEnum)
+        {
+            if([row.key isEqualToString:@"resident"])
+            {
+                [drawThese addObject:row.value];
+            }
+        }
+    }
+    
+    NSMutableArray *here = [[NSMutableArray alloc] init];
+    [self placesToDraw:drawThese containerForNewPlaces:here];
+    
+
+    NSLog(@"The button tapped is named: %@", [tapped currentTitle]);
+    
 }
 
 - (void)didReceiveMemoryWarning

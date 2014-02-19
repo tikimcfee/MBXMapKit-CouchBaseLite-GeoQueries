@@ -2,10 +2,10 @@
     "type": "FeatureCollection",
     "features": [
                  {
-                 "place": "amenity",
                  "type": "Feature",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "1.0",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -16,6 +16,13 @@
                  "building_name" : "Office of Administration",
                  "building_type" : "Administration",
                  "number_floors" : "3",
+                 "floors": [
+                            [
+                             ["office 1a", "office 1b", "office 1c"],
+                             ["office 2a", "office 2b"],
+                             ["showroom 3a"]
+                             ]
+                            ]
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -51,9 +58,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "amenity",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.3",
                  "bound_color_G" : "0.4",
                  "bound_color_B" : "0.2",
@@ -91,9 +98,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "amenity",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -143,9 +150,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "amenity",
                  "properties":
                  {
+                 "building_type": "emergency",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -183,9 +190,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "resident",
                  "properties":
                  {
+                 "building_type": "garage",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -223,9 +230,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "resident",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -263,9 +270,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "resident",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -307,9 +314,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "resident",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -347,9 +354,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "resident",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -387,9 +394,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "emergency",
                  "properties":
                  {
+                 "building_type": "resident",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
@@ -427,9 +434,9 @@
                  },
                  {
                  "type": "Feature",
-                 "place": "emergency",
                  "properties":
                  {
+                 "building_type": "ammenities",
                  "bound_color_R" : "0.5",
                  "bound_color_G" : "1.0",
                  "bound_color_B" : "0.0",
