@@ -18,6 +18,7 @@
     bound_line_width = 1.0;
     placeMapView = nil;
     fill_color = [UIColor whiteColor];
+    my_polygon = nil;
     return self;
 }
 
@@ -87,7 +88,13 @@
 
 - (MKPolygon *) getPolygonRepresentation
 {
-    return [MKPolygon polygonWithCoordinates:self.getLocationBounds count:self.getCount];
+    my_polygon = [MKPolygon polygonWithCoordinates:self.getLocationBounds count:self.getCount];
+    return my_polygon;
+}
+
+- (MKPolygon *) getPolyReference
+{
+    return my_polygon;
 }
 
 - (void) drawSelfToScreen

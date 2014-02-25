@@ -9,11 +9,10 @@
 
 #import "FirstViewController.h"
 
-@interface FirstViewController ()
+@interface FirstViewController () <MKMapViewDelegate>
 @property (nonatomic, strong) MBXMapView *mapView;
 @property (strong, nonatomic) CBLDatabase *database;
 @property (strong, nonatomic) CBLManager *manager;
-
 
 @end
 
@@ -37,6 +36,13 @@
                           action:@selector(pressed:)
                 forControlEvents:UIControlEventTouchDown];
     
+    // Touch Recognizer
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
+    tapRecognizer.numberOfTapsRequired = 1;
+    tapRecognizer.numberOfTouchesRequired = 1;
+    [self.mapView addGestureRecognizer:tapRecognizer];
+    
+    // -- Buttons --
     [ammenities_button setTitle:@"Ammenities" forState: UIControlStateNormal];
 
     [ammenities_button setBackgroundColor:[UIColor colorWithRed:0/255.0f
@@ -66,6 +72,7 @@
                                                       blue:0/255.0f
                                                      alpha:1.0]
                           forState:UIControlStateNormal];
+    // -- End Buttons --
 
     [self.view addSubview:self.mapView];
     [self.view addSubview:ammenities_button];
@@ -95,7 +102,7 @@
     NSMutableArray *temp_place_pointer = nil;
     for(NSObject *place in places)
     {
-        NSLog(@"The place is: %@", place);
+        //NSLog(@"The place is: %@", place);
         PlaceObject *newPlace = [[PlaceObject alloc] init];
         [objects addObject:newPlace];
         
@@ -120,6 +127,9 @@
         }
         
         [newPlace drawSelfToScreen];
+        
+        // GOT IT GOT IT GOT IT!!
+        self.mapView.delegate = self;
     }
 }
 
@@ -168,6 +178,7 @@
                                                               options:0
                                                                 error:nil];
 
+    /*
     NSDictionary *places = [buildings valueForKey:@"features"];
     for(NSObject *place in places)
     {
@@ -180,6 +191,8 @@
          
         }
     }
+    */
+    
     
     
     // create a view so we can define a map function that will find every
@@ -194,14 +207,18 @@
             NSLog(@"The place found is %@", place);
             emit(place, doc);
         }
-    }) version: @"1.0"];
+    }) version: @"1.1"];
+     
     
     // we generate a new query object from the database with the same name
     // as the view we defined above. We then create an enumerator from that
     // querry after it has run, which contains a set of rows that contain a
     // key / value pair.
+    
+    
     CBLQuery* query = [[self.database viewNamed: @"places"] createQuery];
     CBLQueryEnumerator *rowEnum = [query run: &error];
+
     for (CBLQueryRow* row in rowEnum)
     {
         // WARNING - THIS WILL DELETE ALL THE DOCUMENTS IN THE LOCAL DATABASE!!
@@ -259,6 +276,51 @@
 
     NSLog(@"The button tapped is named: %@", [tapped currentTitle]);
     
+}
+
+-(IBAction)foundTap:(UITapGestureRecognizer *)recognizer
+{
+    CGPoint point = [recognizer locationInView:self.mapView];
+    CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.view];
+    NSError *error;
+    
+    CBLView *view = [self.database viewNamed:@"taps"];
+    [view setMapBlock: MAPBLOCK({
+        id place = [doc objectForKey:@"geometry"];
+        if(place)
+        {
+            // the problem:: the coordinates in geoJSON are written in reverse order; lat then long. this causes the bounding rects to fail
+            // get the geometry dictionary, flip the coordinates, rewrite the dictionary..
+            // really?
+            //NSLog(@"%@", place);
+            NSDictionary* temp = [doc valueForKeyPath:@"geometry"];
+            
+            //id t = CBLGeoJSONKey(temp);
+            //NSLog(@"%@", t);
+            
+            emit(CBLGeoJSONKey(temp), doc[@"place"]);
+        }
+    }) version: @"1.1"];
+    
+    CBLQuery* query = [[self.database viewNamed: @"taps"] createQuery];
+    //  CBLGeoRect rect = (CBLGeoRect){{tapPoint.latitude - .0005, tapPoint.longitude - .0005}, {tapPoint.latitude + .0005, tapPoint.longitude + .0005} };
+    //query.boundingBox = (CBLGeoRect){{tapPoint.latitude - .0005, tapPoint.longitude - .0005}, {tapPoint.latitude + .0005, tapPoint.longitude + .0005} };
+    //query.boundingBox = (CBLGeoRect){{tapPoint.latitude - 5, tapPoint.longitude - 5}, {tapPoint.latitude + 5, tapPoint.longitude + 5} };
+    query.boundingBox = (CBLGeoRect){{tapPoint.longitude - .000001, tapPoint.latitude - .000001}, {tapPoint.longitude + .000001, tapPoint.latitude + .000001} };
+    NSLog(@"{%f, %f}, {%f, %f}", query.boundingBox.min.x, query.boundingBox.min.y, query.boundingBox.max.x, query.boundingBox.max.y);
+    CBLQueryEnumerator *rowEnum = [query run: &error];
+    
+    for (CBLGeoQueryRow* row in rowEnum)
+    {
+        NSLog(@"Found place");
+    }
+    NSLog(@"End this find");
+    
+    
+    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
+    point1.coordinate = tapPoint;
+    
+    [self.mapView addAnnotation:point1];
 }
 
 - (void)didReceiveMemoryWarning

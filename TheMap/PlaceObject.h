@@ -23,6 +23,8 @@
     double bound_line_width;
     
     CLLocationCoordinate2D *placeBounds;
+    
+    MKPolygon *my_polygon;
 }
 
 - (id) init;
@@ -41,6 +43,7 @@
 
 - (void) drawSelfToScreen;
 - (MKPolygon *) getPolygonRepresentation;
+- (MKPolygon *) getPolyReference;
 - (MKOverlayRenderer *) mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay;
 
 @end
