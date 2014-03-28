@@ -13,4 +13,6 @@
 
 @interface FirstViewController : UIViewController <MKMapViewDelegate>
 
+- (void)popUpPlaceInformation:(NSDictionary*)place_data;
+
 @end

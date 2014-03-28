@@ -14,11 +14,14 @@
 {
     self = [super init];
     bound_points = [[NSMutableArray alloc] init];
+    
     bound_color = [UIColor blackColor];
     bound_line_width = 1.0;
-    placeMapView = nil;
     fill_color = [UIColor whiteColor];
+
+    placeMapView = nil;
     my_polygon = nil;
+    
     return self;
 }
 
@@ -35,6 +38,8 @@
 
 - (void) setFillColor:(UIColor*)color
 {
+    if(default_fill == NULL)
+        default_fill = color;
     fill_color = color;
 }
 
@@ -58,13 +63,30 @@
     return fill_color;
 }
 
-- (void)addCLPointToPlace:(CLLocationCoordinate2D)bound {
+- (UIColor*) getDefaultFill
+{
+    return default_fill;
+}
+
+- (void)addCLPointToPlace:(CLLocationCoordinate2D)bound
+{
     MyPoint *translater = [[MyPoint alloc] Init: bound];
     [bound_points addObject:translater];
 }
 
-- (void)addBoundPointToPlace:(MyPoint*) bound {
+- (void)addBoundPointToPlace:(MyPoint*) bound
+{
     [bound_points addObject:bound];
+}
+
+- (void)setPlaceData:(NSDictionary *)description
+{
+    place_data = description;
+}
+
+- (NSDictionary *)getPlaceData
+{
+    return place_data;
 }
 
 - (CLLocationCoordinate2D*) getLocationBounds
@@ -88,6 +110,7 @@
 
 - (MKPolygon *) getPolygonRepresentation
 {
+    placeMapView.delegate = self;
     my_polygon = [MKPolygon polygonWithCoordinates:self.getLocationBounds count:self.getCount];
     return my_polygon;
 }

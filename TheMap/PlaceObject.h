@@ -20,9 +20,12 @@
     
     UIColor *bound_color;
     UIColor *fill_color;
+    UIColor *default_fill;
     double bound_line_width;
     
     CLLocationCoordinate2D *placeBounds;
+    
+    NSDictionary *place_data;
     
     MKPolygon *my_polygon;
 }
@@ -34,8 +37,11 @@
 - (void) setBoundColor:(UIColor *) color;
 - (void) setBoundWidth:(double) width;
 - (void) setFillColor:(UIColor*) color;
+- (void) setPlaceData:(NSDictionary*) description;
 - (UIColor*) getFillColor;
+- (UIColor*) getDefaultFill;
 - (UIColor*) getBoundColor;
+- (NSDictionary*) getPlaceData;
 - (double) getWidth;
 
 - (NSInteger) getCount;

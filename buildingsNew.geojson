@@ -4,6 +4,14 @@
                  {
                  "place": "amenity",
                  "type": "Feature",
+                 "place_data":
+                 {
+                 "building_name" : "Office of Administration",
+                 "building_type" : "Administration",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "Absolutely"
+                 },
                  "properties":
                  {
                  "bound_color_R" : "1.0",
@@ -12,10 +20,6 @@
                  "fill_color_R" : "0.1",
                  "fill_color_G" : "0.5",
                  "fill_color_B" : "0.1",
-                 
-                 "building_name" : "Office of Administration",
-                 "building_type" : "Administration",
-                 "number_floors" : "3",
                  },
                  "geometry": {
                  "type": "Polygon",
@@ -52,6 +56,15 @@
                  {
                  "type": "Feature",
                  "place": "amenity",
+                 "place_data":
+                 {
+                 "building_name" : "Office of Important Things",
+                 "building_type" : "Unimporant",
+                 "number_floors" : "75",
+                 "number_tasks"  : "-1",
+                 "dance_party"   : "Not on your life"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.3",
@@ -92,6 +105,15 @@
                  {
                  "type": "Feature",
                  "place": "amenity",
+                 "place_data":
+                 {
+                 "building_name" : "Ministry of Ministrations",
+                 "building_type" : "Very nice",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "On authority and keg availability"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -144,6 +166,15 @@
                  {
                  "type": "Feature",
                  "place": "amenity",
+                 "place_data":
+                 {
+                 "building_name" : "Some arbitrary place",
+                 "building_type" : "Unknown",
+                 "number_floors" : "-1",
+                 "number_tasks"  : "-1",
+                 "dance_party"   : "Unlikely"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -184,6 +215,15 @@
                  {
                  "type": "Feature",
                  "place": "resident",
+                 "place_data":
+                 {
+                 "building_name" : "Office of Official Officing",
+                 "building_type" : "Officiating",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "Only In Officially Officiated Offices"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -224,6 +264,15 @@
                  {
                  "type": "Feature",
                  "place": "resident",
+                 "place_data":
+                 {
+                 "building_name" : "Help me",
+                 "building_type" : "imstuckinadatabase",
+                 "number_floors" : "really",
+                 "number_tasks"  : "howdigethere",
+                 "dance_party"   : "helphelphelp"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -264,6 +313,15 @@
                  {
                  "type": "Feature",
                  "place": "resident",
+                 "place_data":
+                 {
+                 "building_name" : "Office of You",
+                 "building_type" : "Administration",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "Absolutely"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -308,6 +366,15 @@
                  {
                  "type": "Feature",
                  "place": "resident",
+                 "place_data":
+                 {
+                 "building_name" : "Office of Cheesewheels",
+                 "building_type" : "Administration",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "Absolutely"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -348,6 +415,15 @@
                  {
                  "type": "Feature",
                  "place": "resident",
+                 "place_data":
+                 {
+                 "building_name" : "Office of Trickbags",
+                 "building_type" : "Administration",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "Absolutely"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -388,6 +464,15 @@
                  {
                  "type": "Feature",
                  "place": "emergency",
+                 "place_data":
+                 {
+                 "building_name" : "Office of Love",
+                 "building_type" : "Administration",
+                 "number_floors" : "2",
+                 "number_tasks"  : "13",
+                 "dance_party"   : "Absolutely"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
@@ -428,6 +513,15 @@
                  {
                  "type": "Feature",
                  "place": "emergency",
+                 "place_data":
+                 {
+                 "building_name" : "So many offices of administration",
+                 "building_type" : "You'd never guess",
+                 "number_floors" : "Pi/2",
+                 "number_tasks"  : "Threeve",
+                 "dance_party"   : "Not without severe negotiations"
+                 
+                 },
                  "properties":
                  {
                  "bound_color_R" : "0.5",
