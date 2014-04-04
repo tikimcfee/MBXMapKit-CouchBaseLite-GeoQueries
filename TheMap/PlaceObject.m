@@ -122,6 +122,7 @@
 
 - (void) drawSelfToScreen
 {
+    placeMapView.delegate = self;
     [placeMapView addOverlay:self.getPolygonRepresentation];
 }
 

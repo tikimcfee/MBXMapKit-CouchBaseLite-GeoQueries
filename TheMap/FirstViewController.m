@@ -35,7 +35,7 @@
     self.drawnAmmenities = [[NSMutableArray alloc] init];
     self.drawnResidents = [[NSMutableArray alloc] init];
 
-    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:3 animated:YES];
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:18 animated:YES];
     
     
     //================================================================================================================
@@ -63,7 +63,7 @@
                                                alpha:1.0]
                                             forState:UIControlStateNormal];
     
-    UIButton *resident_button = [[UIButton alloc] initWithFrame: CGRectMake(120, 470, 100, 30)];
+    UIButton *resident_button = [[UIButton alloc] initWithFrame: CGRectMake(180, 470, 100, 30)];
     [resident_button addTarget:nil
                         action:@selector(pressed:)
               forControlEvents:UIControlEventTouchDown];
@@ -90,7 +90,9 @@
     
     //dispatch_queue_t queue = dispatch_get_global_queue(0,0);
     //dispatch_async(queue, ^{
-        
+    
+    /*
+    
         NSLog(@"Beginning download");
         NSString *stringURL = @"https://gist.githubusercontent.com/tikimcfee/9812125/raw/ab7e44a817270ac489a62fee260c619b84152117/gistfile1.txt";
         //NSString *stringURL = @"https://gist.githubusercontent.com/tikimcfee/9812220/raw/079efef70b9e73228b4a0dfcccdd9444c900c5d2/2ksource";
@@ -110,33 +112,34 @@
         
         //int count;
         
-        /*
+     
         NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
         for (count = 0; count < (int)[directoryContent count]; count++)
         {
             NSLog(@"File %d: %@", (count + 1), [directoryContent objectAtIndex:count]);
         }
-         */
-        
-        NSData *d = [[NSData alloc] initWithContentsOfFile:dataPath];
-        // : [[ NSBundle bundleWithPath:path] pathForResource:@"mapstuff" ofType:@"geojson"]
-        self.theWebFile = [NSJSONSerialization JSONObjectWithData:d
-                                                                  options:0
-                                                                    error:nil];
+     
+     */
+     
+     //   NSData *d = [[NSData alloc] initWithContentsOfFile:dataPath];
+    //[[ NSBundle bundleWithPath:path] pathForResource:@"mapstuff" ofType:@"geojson"]
+        //self.theWebFile = [NSJSONSerialization JSONObjectWithData:d
+        //                                                          options:0
+        //                                                            error:nil];
     
         [self loadCouchbase];
     
-    NSError *error;
-    CBLQuery* query = [[self.database viewNamed: @"places"] createQuery];
-    CBLQueryEnumerator *rowEnum = [query run: &error];
-    NSMutableArray *drawThese = [[NSMutableArray alloc] init];
+    //NSError *error;
+    //CBLQuery* query = [[self.database viewNamed: @"places"] createQuery];
+    //CBLQueryEnumerator *rowEnum = [query run: &error];
+    //NSMutableArray *drawThese = [[NSMutableArray alloc] init];
     
-    for(CBLQueryRow* row in rowEnum)
-    {
-        //NSLog(@"%@", row.value);
-        [drawThese addObject:row.value];
-    }
-    [self placesToDraw:drawThese containerForNewPlaces:self.drawnAmmenities];
+    //for(CBLQueryRow* row in rowEnum)
+    //{
+    //    //NSLog(@"%@", row.value);
+    //    [drawThese addObject:row.value];
+    //}
+    //[self placesToDraw:drawThese containerForNewPlaces:self.drawnAmmenities];
 
     
     //});
@@ -151,23 +154,23 @@
     NSMutableArray *temp_place_pointer = nil;
     for(NSObject *place in places)
     {
-        //NSLog(@"The place is: %@", place);
+        NSLog(@"The place is: %@", place);
         PlaceObject *newPlace = [[PlaceObject alloc] init];
         
         temp_place_pointer = [place valueForKeyPath:@"geometry.coordinates"];
         
-        //double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
-        //double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
-        //double boundB = [[place valueForKeyPath:@"properties.bound_color_B"] doubleValue];
-        //double fillR = [[place valueForKeyPath:@"properties.fill_color_R"] doubleValue];
-        //double fillG = [[place valueForKeyPath:@"properties.fill_color_G"] doubleValue];
-        //double fillB = [[place valueForKeyPath:@"properties.fill_color_B"] doubleValue];
+        double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
+        double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
+        double boundB = [[place valueForKeyPath:@"properties.bound_color_B"] doubleValue];
+        double fillR = [[place valueForKeyPath:@"properties.fill_color_R"] doubleValue];
+        double fillG = [[place valueForKeyPath:@"properties.fill_color_G"] doubleValue];
+        double fillB = [[place valueForKeyPath:@"properties.fill_color_B"] doubleValue];
         
-        //[newPlace setBoundColor: [UIColor colorWithRed:boundR green:boundG blue:boundB alpha:.5]];
-        //[newPlace setFillColor: [UIColor colorWithRed:fillR green:fillG blue:fillB alpha:.5]];
+        [newPlace setBoundColor: [UIColor colorWithRed:boundR green:boundG blue:boundB alpha:.5]];
+        [newPlace setFillColor: [UIColor colorWithRed:fillR green:fillG blue:fillB alpha:.5]];
         
-        [newPlace setBoundColor: [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:.5]];
-        [newPlace setFillColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:.5]];
+        //[newPlace setBoundColor: [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:.5]];
+        //[newPlace setFillColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:.5]];
         [newPlace setBoundWidth: 3.0];
         [newPlace setMapView:self.mapView];
         
@@ -232,11 +235,11 @@
     NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
                                                               options:0
                                                                 error:nil];
-    //NSDictionary *places = [buildings valueForKey:@"features"];
-    NSDictionary *places = [self.theWebFile valueForKey:@"features"];
+    NSDictionary *places = [buildings valueForKey:@"features"];
+    //NSDictionary *places = [self.theWebFile valueForKey:@"features"];
     for(NSObject *place in places)
     {
-        //NSLog(@"The dictionary string is %@", place);
+        NSLog(@"The dictionary string is %@", place);
         CBLDocument* doc = [self.database createDocument];
         //[doc putProperties:(NSDictionary*) place error:&error];
         CBLRevision *newRevision = [doc putProperties:(NSDictionary*)place error: &error];
@@ -257,18 +260,18 @@
     CBLView *view = [self.database viewNamed:@"places"];
     
     // REMOVE THIS TO KEEP VERSIONS!
-    int vers = 1;
-    vers = arc4random() % 100000;
-    NSString *thisV = [NSString stringWithFormat:@"%d", vers];
+    //int vers = 1;
+    //vers = arc4random() % 100000;
+    //NSString *thisV = [NSString stringWithFormat:@"%d", vers];
     
     [view setMapBlock: MAPBLOCK({
-        id place = [doc objectForKey:@"type"];
+        id place = [doc objectForKey:@"place"];
         if (place)
         {
             //NSLog(@"The place found is %@", place);
             emit(place, doc);
         }
-    }) version: thisV];
+    }) version: @"0.15"];
      
     
     // we generate a new query object from the database with the same name
@@ -340,6 +343,7 @@
         {
             for (CBLQueryRow* row in rowEnum)
             {
+                NSLog(@"%@", row.key);
                 if([row.key isEqualToString:@"resident"])
                 {
                     [drawThese addObject:row.value];
@@ -380,8 +384,8 @@
     
     for (CBLGeoQueryRow* row in rowEnum)
     {
-        NSLog(@"Got the row val: %@", row.value);
-        /*
+        //NSLog(@"Got the row val: %@", row.value);
+        
         //NSLog(@"Found place with value %@", row.value);
         for(NSObject *place in self.drawnResidents)
         {
@@ -420,7 +424,7 @@
                 self.mapView.delegate = self;
                 [self popUpPlaceInformation:[(PlaceObject*)place getPlaceData]];
             }
-        }*/
+        }
     }
     NSLog(@"End this find");
     

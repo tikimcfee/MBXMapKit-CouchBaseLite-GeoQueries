@@ -61,7 +61,6 @@
 		4541687918972A7B00FC746E /* buildings.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildings.geojson; sourceTree = SOURCE_ROOT; };
 		4541687F18973DB700FC746E /* MyPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		4541688018973DE000FC746E /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
-		45416883189AC03900FC746E /* buildingTest.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildingTest.geojson; sourceTree = "<group>"; };
 		455EC6261887537300E79682 /* buildingsNew.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildingsNew.geojson; sourceTree = SOURCE_ROOT; };
 		45A650FB18A29827004CF835 /* countriesREPLACED.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countriesREPLACED.geojson; sourceTree = "<group>"; };
 		45AEE21C1886096D00215B75 /* TheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,7 +155,6 @@
 				4541687918972A7B00FC746E /* buildings.geojson */,
 				45A650FB18A29827004CF835 /* countriesREPLACED.geojson */,
 				455EC6261887537300E79682 /* buildingsNew.geojson */,
-				45416883189AC03900FC746E /* buildingTest.geojson */,
 				45AEE2251886096E00215B75 /* TheMap */,
 				45AEE24A1886096E00215B75 /* TheMapTests */,
 				45AEE21E1886096D00215B75 /* Frameworks */,
@@ -512,9 +510,13 @@
 					"armv6,",
 					"armv7,",
 					armv7s,
+					"arm6,",
+					arm7,
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: IVAN LUGO (8JV4UK999G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: IVAN LUGO (8JV4UK999G)";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheMap/TheMap-Prefix.pch";
@@ -524,7 +526,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B52744F0-098D-4559-AEF2-C0CB973B551F";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -536,9 +540,13 @@
 					"armv6,",
 					"armv7,",
 					armv7s,
+					"arm6,",
+					arm7,
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: IVAN LUGO (8JV4UK999G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: IVAN LUGO (8JV4UK999G)";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheMap/TheMap-Prefix.pch";
@@ -548,7 +556,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B52744F0-098D-4559-AEF2-C0CB973B551F";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
