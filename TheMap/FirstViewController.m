@@ -8,6 +8,7 @@
 
 
 #import "FirstViewController.h"
+#import "SPPlaceObject.h"
 
 @interface FirstViewController () <MKMapViewDelegate>
 @property (nonatomic, strong) MBXMapView *mapView;
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *drawnAmmenities;
 @property (strong, nonatomic) NSMutableArray *drawnPlaces;
 @property (strong, nonatomic) NSDictionary *theWebFile;
+@property (strong, nonatomic) NSMutableDictionary *drawnDocuments;
 @property (strong, nonatomic) PlaceObject *currentTapObject;
 
 
@@ -34,8 +36,9 @@
     self.mapView.delegate = self;
     self.drawnAmmenities = [[NSMutableArray alloc] init];
     self.drawnResidents = [[NSMutableArray alloc] init];
+    self.drawnDocuments = [[NSMutableDictionary alloc] init];
 
-    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:3 animated:YES];
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(28.552, -81.342) zoomLevel:18 animated:YES];
     
     
     //================================================================================================================
@@ -90,7 +93,7 @@
     
     //dispatch_queue_t queue = dispatch_get_global_queue(0,0);
     //dispatch_async(queue, ^{
-        
+    /*
         NSLog(@"Beginning download");
         NSString *stringURL = @"https://gist.githubusercontent.com/tikimcfee/9812125/raw/ab7e44a817270ac489a62fee260c619b84152117/gistfile1.txt";
         //NSString *stringURL = @"https://gist.githubusercontent.com/tikimcfee/9812220/raw/079efef70b9e73228b4a0dfcccdd9444c900c5d2/2ksource";
@@ -108,24 +111,17 @@
         dataPath = [dataPath stringByStandardizingPath];
         [urlData writeToFile:dataPath atomically:YES];
         
-        //int count;
-        
-        /*
-        NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
-        for (count = 0; count < (int)[directoryContent count]; count++)
-        {
-            NSLog(@"File %d: %@", (count + 1), [directoryContent objectAtIndex:count]);
-        }
-         */
-        
         NSData *d = [[NSData alloc] initWithContentsOfFile:dataPath];
         // : [[ NSBundle bundleWithPath:path] pathForResource:@"mapstuff" ofType:@"geojson"]
         self.theWebFile = [NSJSONSerialization JSONObjectWithData:d
                                                                   options:0
                                                                     error:nil];
+    */
     
-        [self loadCouchbase];
+    [self loadCouchbase];
     
+    
+    /*
     NSError *error;
     CBLQuery* query = [[self.database viewNamed: @"places"] createQuery];
     CBLQueryEnumerator *rowEnum = [query run: &error];
@@ -137,6 +133,7 @@
         [drawThese addObject:row.value];
     }
     [self placesToDraw:drawThese containerForNewPlaces:self.drawnAmmenities];
+    */
 
     
     //});
@@ -156,18 +153,18 @@
         
         temp_place_pointer = [place valueForKeyPath:@"geometry.coordinates"];
         
-        //double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
-        //double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
-        //double boundB = [[place valueForKeyPath:@"properties.bound_color_B"] doubleValue];
-        //double fillR = [[place valueForKeyPath:@"properties.fill_color_R"] doubleValue];
-        //double fillG = [[place valueForKeyPath:@"properties.fill_color_G"] doubleValue];
-        //double fillB = [[place valueForKeyPath:@"properties.fill_color_B"] doubleValue];
+        double boundR = [[place valueForKeyPath:@"properties.bound_color_R"] doubleValue];
+        double boundG = [[place valueForKeyPath:@"properties.bound_color_G"] doubleValue];
+        double boundB = [[place valueForKeyPath:@"properties.bound_color_B"] doubleValue];
+        double fillR = [[place valueForKeyPath:@"properties.fill_color_R"] doubleValue];
+        double fillG = [[place valueForKeyPath:@"properties.fill_color_G"] doubleValue];
+        double fillB = [[place valueForKeyPath:@"properties.fill_color_B"] doubleValue];
         
-        //[newPlace setBoundColor: [UIColor colorWithRed:boundR green:boundG blue:boundB alpha:.5]];
-        //[newPlace setFillColor: [UIColor colorWithRed:fillR green:fillG blue:fillB alpha:.5]];
+        [newPlace setBoundColor: [UIColor colorWithRed:boundR green:boundG blue:boundB alpha:.5]];
+        [newPlace setFillColor: [UIColor colorWithRed:fillR green:fillG blue:fillB alpha:.5]];
         
-        [newPlace setBoundColor: [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:.5]];
-        [newPlace setFillColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:.5]];
+        //[newPlace setBoundColor: [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:.5]];
+        //[newPlace setFillColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:.5]];
         [newPlace setBoundWidth: 3.0];
         [newPlace setMapView:self.mapView];
         
@@ -232,8 +229,8 @@
     NSDictionary *buildings = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithContentsOfFile:jsonPath]
                                                               options:0
                                                                 error:nil];
-    //NSDictionary *places = [buildings valueForKey:@"features"];
-    NSDictionary *places = [self.theWebFile valueForKey:@"features"];
+    NSDictionary *places = [buildings valueForKey:@"features"];
+    //NSDictionary *places = [self.theWebFile valueForKey:@"features"];
     for(NSObject *place in places)
     {
         //NSLog(@"The dictionary string is %@", place);
@@ -262,7 +259,7 @@
     NSString *thisV = [NSString stringWithFormat:@"%d", vers];
     
     [view setMapBlock: MAPBLOCK({
-        id place = [doc objectForKey:@"type"];
+        id place = [doc objectForKey:@"place"];
         if (place)
         {
             //NSLog(@"The place found is %@", place);
@@ -301,6 +298,7 @@
     CBLQueryEnumerator *rowEnum = [query run: &error];
     NSMutableArray *drawThese = [[NSMutableArray alloc] init];
 
+    /*
     if( [[tapped currentTitle] isEqualToString:@"Ammenities"])
     {
         if([self.drawnAmmenities count] > 0)
@@ -349,6 +347,57 @@
             [self placesToDraw:drawThese containerForNewPlaces:self.drawnResidents];
         }
     }
+    */
+    
+    if([[tapped currentTitle] isEqualToString:@"Residents"])
+    {
+        CBLView *view = [self.database viewNamed:@"Residents"];
+        [view setMapBlock: MAPBLOCK({
+            id place = [doc objectForKey:@"place"];
+            NSLog(@"%@", place);
+            if([place isEqualToString:@"resident"])
+            {
+                emit( [doc valueForKeyPath:@"place_data.building_name"], doc);
+            }
+        }) version: @"1.6"];
+        
+        CBLQuery* query = [[self.database viewNamed: @"Residents"] createQuery];
+        CBLQueryEnumerator *rowEnum = [query run: &error];
+        
+        for(CBLQueryRow* row in rowEnum)
+        {
+            if([row.value valueForKey:@"polygon"] == NULL)
+            {
+                CBLDocument *temp_doc = [self.database documentWithID:row.documentID];
+                SPPlaceObject *place = [SPPlaceObject modelForDocument:temp_doc];
+                [place save:&error];
+                MKPolygon *temp = [place getMyPolygonFromDocID:row.documentID inDatabase:self.database forDrawings:self.drawnDocuments];
+                [place drawSelfToScreen:self.mapView fromDocument:self.drawnDocuments];
+                self.mapView.delegate = self;
+            }
+            else
+            {
+                [row.value removeObjectForKey:@"polygon"];
+                [self.mapView removeOverlay:[self.drawnDocuments valueForKey:row.key]];
+            }
+        }
+        
+    }
+    else if( [[tapped currentTitle] isEqualToString:@"Amenities"])
+    {
+        CBLView *view = [self.database viewNamed:@"Amenities"];
+        [view setMapBlock: MAPBLOCK({
+            id place = [doc objectForKey:@"place"];
+            if([place isEqualToString:@"amenity"])
+            {
+                emit( [doc valueForKeyPath:@"place_data.building_name"], doc);
+            }
+        }) version: @"1.6"];
+        
+        CBLQuery* query = [[self.database viewNamed: @"Amenities"] createQuery];
+        CBLQueryEnumerator *rowEnum = [query run: &error];
+        
+    }
 
     NSLog(@"The button tapped is named: %@", [tapped currentTitle]);
     
@@ -381,8 +430,30 @@
     for (CBLGeoQueryRow* row in rowEnum)
     {
         NSLog(@"Got the row val: %@", row.value);
-        /*
+        
+        CBLDocument *temp_doc = [self.database documentWithID:row.documentID];
+        SPPlaceObject *place = [SPPlaceObject modelForDocument:temp_doc];
+        MKPolygon *temp = [place getMyPolygonFromDocID:row.documentID inDatabase:self.database forDrawings:self.drawnDocuments];
+        
+        if([self.drawnDocuments valueForKey:[row.value valueForKey:@"building_name"]] != NULL)
+        {
+            [self.mapView removeOverlay:[row.value valueForKey:@"building_name"]];
+        }
+        else
+        {
+            self.currentTapObject = (PlaceObject*)place;
+            [self.mapView removeOverlay:[(PlaceObject*)place getPolyReference]];
+            [self.currentTapObject setFillColor:[UIColor blackColor]];
+            [self.currentTapObject drawSelfToScreen];
+            self.mapView.delegate = self;
+            [self popUpPlaceInformation:[(PlaceObject*)place getPlaceData]];
+        }
+        
+        
+        //NSLog(@"My place name is... %@", [place getMyName]);
+        
         //NSLog(@"Found place with value %@", row.value);
+        /*
         for(NSObject *place in self.drawnResidents)
         {
             if([[[(PlaceObject*)place getPlaceData] valueForKeyPath:@"building_name"] isEqualToString:[row.value valueForKeyPath:@"building_name"]])
@@ -391,6 +462,7 @@
                 {
                     [self.mapView removeOverlay:[self.currentTapObject getPolyReference]];
                     [self.currentTapObject setFillColor:[self.currentTapObject getDefaultFill]];
+                    [self.currentTapObject setPolygon:[self.drawnDocuments valueForKey:[[temp_doc propertyForKey:@"place_data"] valueForKey:@"building_name"]]];
                     [self.currentTapObject drawSelfToScreen];
                     self.mapView.delegate = self;
                 }
@@ -420,7 +492,9 @@
                 self.mapView.delegate = self;
                 [self popUpPlaceInformation:[(PlaceObject*)place getPlaceData]];
             }
-        }*/
+        }
+         */
+        
     }
     NSLog(@"End this find");
     

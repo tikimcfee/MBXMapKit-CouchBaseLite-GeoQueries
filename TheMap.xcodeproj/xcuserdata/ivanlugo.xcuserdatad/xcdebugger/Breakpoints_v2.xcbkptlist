@@ -37,29 +37,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TheMap/FirstViewController.m"
-            timestampString = "417642791.86242"
+            filePath = "TheMap/SPPlaceObject.m"
+            timestampString = "418521184.605853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "-foundTap:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TheMap/FirstViewController.m"
-            timestampString = "417647259.321519"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "-foundTap:"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-getMyPolygonFromDocID:inDatabase:forDrawings:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

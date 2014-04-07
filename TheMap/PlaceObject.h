@@ -12,10 +12,9 @@
 #import "MBXMapKit.h"
 #import "MyPoint.h"
 
-@interface PlaceObject: MKPolygon <MKMapViewDelegate>
+@interface PlaceObject: CBLModel <MKMapViewDelegate>
 {
     NSMutableArray *bound_points;
-    NSData *place_properties;
     MBXMapView *placeMapView;
     
     UIColor *bound_color;
@@ -26,6 +25,7 @@
     CLLocationCoordinate2D *placeBounds;
     
     NSDictionary *place_data;
+    NSData *place_properties;
     
     MKPolygon *my_polygon;
 }
@@ -38,6 +38,7 @@
 - (void) setBoundWidth:(double) width;
 - (void) setFillColor:(UIColor*) color;
 - (void) setPlaceData:(NSDictionary*) description;
+- (void) setPolygon:toThis;
 - (UIColor*) getFillColor;
 - (UIColor*) getDefaultFill;
 - (UIColor*) getBoundColor;

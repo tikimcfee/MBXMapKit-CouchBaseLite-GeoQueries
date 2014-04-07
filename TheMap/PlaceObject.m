@@ -111,13 +111,20 @@
 - (MKPolygon *) getPolygonRepresentation
 {
     placeMapView.delegate = self;
-    my_polygon = [MKPolygon polygonWithCoordinates:self.getLocationBounds count:self.getCount];
+    if(my_polygon == nil)
+        my_polygon = [MKPolygon polygonWithCoordinates:self.getLocationBounds count:self.getCount];
+    
     return my_polygon;
 }
 
 - (MKPolygon *) getPolyReference
 {
     return my_polygon;
+}
+
+- (void) setPolygon:(MKPolygon*)toThis
+{
+    my_polygon = toThis;
 }
 
 - (void) drawSelfToScreen
